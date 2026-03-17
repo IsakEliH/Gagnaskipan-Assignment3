@@ -82,35 +82,44 @@ class BinarySearchTree(IBinarySearchTree):
         """
         Returns the in-order predecessor of node, or None if it does not exist.
         """
-        if node == self._first() or node is None:
+
+        if node is None:
             return None
 
-        pred = node.parent
-
         if node.left is not None:
-            node = node.left
-            while node.right is not None:
-                node = node.right
-            pred = node
+            curr: BinarySearchTree._Node = node.left
+            while curr.right is not None:
+                curr = curr.right
+            return curr
 
-        return pred
+        curr = node
+        parent: BinarySearchTree._Node = curr.parent
+        while parent is not None and curr == parent.left:
+            curr = parent
+            parent = parent.parent
+
+        return parent
 
     def _after(self, node: _Node) -> _Node | None:
         """
         Returns the in-order successor of node, or None if it does not exist.
         """
-        if node == self._last() or node is None:
+        if node is None:
             return None
 
-        successor = node.parent
-
         if node.right is not None:
-            node = node.right
-            while node.left is not None:
-                node = node.left
-            successor = node
+            curr: BinarySearchTree._Node = node.right
+            while curr.left is not None:
+                curr = curr.left
+            return curr
 
-        return successor
+        curr = node
+        parent: BinarySearchTree._Node = curr.parent
+        while parent is not None and curr == parent.right:
+            curr = parent
+            parent = parent.parent
+
+        return parent
 
     # --------------------------------------------------------------------------------------
     # Public methods, implementing the abstract-base-class interface.
