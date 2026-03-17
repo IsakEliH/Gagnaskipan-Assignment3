@@ -197,8 +197,13 @@ class BinarySearchTree(IBinarySearchTree):
         """
         Returns the value of the element with the given key, or None if the key does not exist.
         """
-        # TO DO ...
-        return None
+        if not self.is_in(key):
+            return None
+
+        if self._root is None:
+            return None
+
+        return self._move_to_key(self._root, key).pair.value
 
     def pairs(self) -> list[Pair]:
         """
