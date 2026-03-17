@@ -102,30 +102,13 @@ class BinarySearchTree(IBinarySearchTree):
         if node == self._last() or node is None:
             return None
 
-        if self._root is None:
-            return None
-        else:
-            curr: BinarySearchTree._Node = self._root
+        successor = node.parent
 
-        successor: None | BinarySearchTree._Node = None
-
-        while curr.pair.key == node.pair.key:
-            if curr.pair.key > node.pair.key:
-                successor = curr
-                curr = curr.left
-
-            if curr.pair.key <= node.pair.key:
-                curr = curr.right
-
-        # Make successor the leftmost node in the right subtree
-        if curr.right is not None:
-            curr = curr.right
-            while curr is not None:
-                curr = curr.left
-            successor = curr
-
-        else:
-            successor = curr.parent
+        if node.right is not None:
+            node = node.right
+            while node.left is not None:
+                node = node.left
+            successor = node
 
         return successor
 
@@ -238,15 +221,15 @@ class BinarySearchTree(IBinarySearchTree):
         """
         Returns a list of all the (key, value) pairs in the tree, in an increasing order.
         """
-        # TO DO ...
-        return []
+        pair_list: list[Pair] = [pair for pair in self]
+
+        return pair_list
 
     def clear(self):
         """
         Removes all elements from the tree (tree becomes empty).
         """
-        # TO DO ...
-        ...
+        self._root = None
 
     def delete(self, key: object) -> bool:
         """
