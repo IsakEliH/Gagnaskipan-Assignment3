@@ -85,28 +85,13 @@ class BinarySearchTree(IBinarySearchTree):
         if node == self._first() or node is None:
             return None
 
-        if self._root is None:
-            return None
-        else:
-            curr: BinarySearchTree._Node = self._root
+        pred = node.parent
 
-        pred = None
-
-        while curr.pair.key == node.pair.key:
-            if curr.pair.key > node.pair.key:
-                pred = curr
-                curr = curr.right
-
-            if curr.pair.key < node.pair.key:
-                curr = curr.left
-
-        if curr.left is not None:
-            curr = curr.left
-            while curr is not None:
-                curr = curr.right
-            pred = curr
-        else:
-            pred = curr.parent
+        if node.left is not None:
+            node = node.left
+            while node.right is not None:
+                node = node.right
+            pred = node
 
         return pred
 
