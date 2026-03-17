@@ -1,7 +1,7 @@
 #
 # MyDict dictionary.
 # Your name:
-#  - <Add your name here>
+#  - Ísak Elí Hauksson
 #
 
 from collections.abc import MutableMapping

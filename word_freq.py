@@ -1,7 +1,7 @@
 #
 # Word frequency.
 # Your name:
-#  - <Add your name here>
+#  - Ísak Elí Hauksson
 #
 
 from my_dict import MyDict

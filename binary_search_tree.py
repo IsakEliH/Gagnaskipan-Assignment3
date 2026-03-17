@@ -1,7 +1,7 @@
 #
 # BST - Trees (Binary Search Trees)
 # Your name:
-#  - <Add your name here>
+#  - Ísak Elí Hauksson
 #
 from interface.binary_search_tree_abc import Pair, IBinarySearchTree
 
@@ -31,12 +31,12 @@ class BinarySearchTree(IBinarySearchTree):
             self.right = right
             self.pair = pair
 
-    def _representation(self, node: _Node) -> str:
+    def _representation(self, node: _Node | None) -> str:
         if node is None:
             return "-"
-        l = self._representation(node.left)
-        r = self._representation(node.right)
-        return '(' + str(node.pair) + ' ' + l + ' ' + r + ')'
+        left = self._representation(node.left)
+        right = self._representation(node.right)
+        return '(' + str(node.pair) + ' ' + left + ' ' + right + ')'
 
     # The __iter__ and __reversed__ will be used to test the _first/_last/_before/_after methods.
     def __iter__(self):
