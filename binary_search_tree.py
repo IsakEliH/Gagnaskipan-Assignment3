@@ -141,6 +141,16 @@ class BinarySearchTree(IBinarySearchTree):
         return [pair.key for pair in self.pairs()]
 
     def _move_to_key(self, node: _Node, key: object) -> _Node:
+        """
+        Get the node of of a specific key
+
+        :param node: A starting node to search from
+        :type node: _Node
+        :param key: The key to move to
+        :type key: object
+        :return: The node of the key
+        :rtype: _Node
+        """
 
         if node.left is None and (key < node.pair.key):
             return node
