@@ -57,8 +57,10 @@ class BinarySearchTree(IBinarySearchTree):
         In a non-empty tree, returns the minimum key node (first in an inorder traversal), otherwise None.
         """
         curr = self._root
+        if curr is None:
+            return None
 
-        while curr is not None:
+        while curr.left is not None:
             curr = curr.left
 
         return curr
@@ -110,8 +112,35 @@ class BinarySearchTree(IBinarySearchTree):
         """
         Returns the in-order successor of node, or None if it does not exist.
         """
-        # TO DO ...
-        return None
+        if node == self._last() or node is None:
+            return None
+
+        if self._root is None:
+            return None
+        else:
+            curr: BinarySearchTree._Node = self._root
+
+        successor: None | BinarySearchTree._Node = None
+
+        while curr.pair.key == node.pair.key:
+            if curr.pair.key > node.pair.key:
+                successor = curr
+                curr = curr.left
+
+            if curr.pair.key <= node.pair.key:
+                curr = curr.right
+
+        # Make successor the leftmost node in the right subtree
+        if curr.right is not None:
+            curr = curr.right
+            while curr is not None:
+                curr = curr.left
+            successor = curr
+
+        else:
+            successor = curr.parent
+
+        return successor
 
     # --------------------------------------------------------------------------------------
     # Public methods, implementing the abstract-base-class interface.
