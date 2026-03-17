@@ -118,7 +118,7 @@ class BinarySearchTree(IBinarySearchTree):
 
     def __init__(self):
         # This is the only member variable you need. Do not change the constructor.
-        self._root = None
+        self._root: None | BinarySearchTree._Node = None
 
     def __str__(self) -> str:
         """
