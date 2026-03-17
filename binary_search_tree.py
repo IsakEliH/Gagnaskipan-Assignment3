@@ -55,8 +55,12 @@ class BinarySearchTree(IBinarySearchTree):
         """
         In a non-empty tree, returns the minimum key node (first in an inorder traversal), otherwise None.
         """
-        # TO DO ...
-        return None
+        curr = self._root
+
+        while curr is not None:
+            curr = curr.left
+
+        return curr
 
     def _last(self) -> _Node | None:
         """
