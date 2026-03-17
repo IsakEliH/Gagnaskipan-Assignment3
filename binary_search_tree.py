@@ -25,6 +25,7 @@ class BinarySearchTree(IBinarySearchTree):
         """
         The node class for creating the nodes in the tree (Do not change!).
         """
+
         def __init__(self, parent, left, right, pair: Pair):
             self.parent = parent
             self.left = left
@@ -36,7 +37,7 @@ class BinarySearchTree(IBinarySearchTree):
             return "-"
         left = self._representation(node.left)
         right = self._representation(node.right)
-        return '(' + str(node.pair) + ' ' + left + ' ' + right + ')'
+        return "(" + str(node.pair) + " " + left + " " + right + ")"
 
     # The __iter__ and __reversed__ will be used to test the _first/_last/_before/_after methods.
     def __iter__(self):
@@ -126,7 +127,9 @@ class BinarySearchTree(IBinarySearchTree):
         """
         return self._representation(self._root)
 
-    def insert_key(self, key: object) -> bool:  # Method is non-essential, but added for testing convenience.
+    def insert_key(
+        self, key: object
+    ) -> bool:  # Method is non-essential, but added for testing convenience.
         """
         Insert (key, None) element at the appropriate location in the tree if key does not already exist;
         if the key already exists in the tree, then override with the new (key, None) pair.
@@ -134,7 +137,9 @@ class BinarySearchTree(IBinarySearchTree):
         """
         return self.insert(Pair(key, None))
 
-    def keys(self) -> list[object]: # Method is non-essential, but added for testing convenience.
+    def keys(
+        self,
+    ) -> list[object]:  # Method is non-essential, but added for testing convenience.
         """
         Returns a list of all the keys in the tree, in an increasing order.
         """
@@ -142,14 +147,9 @@ class BinarySearchTree(IBinarySearchTree):
 
     def _move_to_key(self, node: _Node, key: object) -> _Node:
         """
-        Get the node of of a specific key
-
-        :param node: A starting node to search from
-        :type node: _Node
-        :param key: The key to move to
-        :type key: object
-        :return: The node of the key
-        :rtype: _Node
+        A helper function that takes in a starting Node and a key.
+        The function uses recursion to search for the node of the key.
+        Returns the Node with the inputted key.
         """
 
         if node.left is None and (key < node.pair.key):
@@ -173,9 +173,8 @@ class BinarySearchTree(IBinarySearchTree):
         if self._root is None:
             self._root = self._Node(None, None, None, pair)
             return True
-        curr = self._root
 
-        node: BinarySearchTree._Node = self._move_to_key(curr, pair.key)
+        node: BinarySearchTree._Node = self._move_to_key(self._root, pair.key)
 
         if pair.key < node.pair.key:
             node.left = self._Node(node, None, None, pair)
