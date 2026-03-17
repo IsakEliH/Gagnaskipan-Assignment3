@@ -24,6 +24,7 @@ def test1():
     keys = [50, 30, 20, 25, 70, 60, 40, 35, 65, 80, 55]
     for key in keys:
         tree.insert_key(key)
+        print(tree)
     print(tree)
     tree.delete(55)
     print(tree)
