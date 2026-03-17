@@ -180,8 +180,7 @@ class BinarySearchTree(IBinarySearchTree):
         """
         Returns True if the tree is empty, False otherwise.
         """
-        # TO DO ...
-        return True
+        return self._root is None
 
     def is_in(self, key: object) -> bool:
         """
