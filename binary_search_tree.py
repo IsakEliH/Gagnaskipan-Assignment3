@@ -70,8 +70,10 @@ class BinarySearchTree(IBinarySearchTree):
         In a non-empty tree, returns the maximum key node (last in an inorder traversal), otherwise None.
         """
         curr = self._root
+        if curr is None:
+            return None
 
-        while curr is not None:
+        while curr.right is not None:
             curr = curr.right
 
         return curr
