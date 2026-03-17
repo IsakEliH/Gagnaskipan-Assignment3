@@ -160,7 +160,20 @@ class BinarySearchTree(IBinarySearchTree):
         if the key already exists in the tree, then override with the new (key, value) pair.
         Returns True is a new element was inserted, otherwise False (was updated).
         """
-        # TO DO ...
+        if self._root is None:
+            self._root = self._Node(None, None, None, pair)
+            return True
+        curr = self._root
+
+        node: BinarySearchTree._Node = self._move_to_key(curr, pair.key)
+
+        if pair.key < node.pair.key:
+            node.left = self._Node(node, None, None, pair)
+            return True
+        if pair.key > node.pair.key:
+            node.right = self._Node(node, None, None, pair)
+            return True
+
         return False
 
     def is_empty(self) -> bool:
