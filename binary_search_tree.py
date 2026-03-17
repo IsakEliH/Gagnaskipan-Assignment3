@@ -140,6 +140,20 @@ class BinarySearchTree(IBinarySearchTree):
         """
         return [pair.key for pair in self.pairs()]
 
+    def _move_to_key(self, node: _Node, key: object) -> _Node:
+
+        if node.left is None and (key < node.pair.key):
+            return node
+        if node.right is None and (key > node.pair.key):
+            return node
+
+        if key < node.pair.key:
+            node = self._move_to_key(node.left, key)
+        if key > node.pair.key:
+            node = self._move_to_key(node.right, key)
+
+        return node
+
     def insert(self, pair: Pair) -> bool:
         """
         Insert (key, value) element at the appropriate location in the tree if key does not already exist;
