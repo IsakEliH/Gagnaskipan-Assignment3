@@ -186,7 +186,11 @@ class BinarySearchTree(IBinarySearchTree):
         """
         Returns True if an element with key is in the tree, otherwise False.
         """
-        # TO DO ...
+        if self._root is None:
+            return False
+
+        if self._move_to_key(self._root, key).pair.key == key:
+            return True
         return False
 
     def get(self, key: object) -> object:
