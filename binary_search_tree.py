@@ -77,8 +77,33 @@ class BinarySearchTree(IBinarySearchTree):
         """
         Returns the in-order predecessor of node, or None if it does not exist.
         """
-        # TO DO ...
-        return None
+        if node == self._first() or node is None:
+            return None
+
+        if self._root is None:
+            return None
+        else:
+            curr: BinarySearchTree._Node = self._root
+
+        pred = None
+
+        while curr.pair.key == node.pair.key:
+            if curr.pair.key > node.pair.key:
+                pred = curr
+                curr = curr.right
+
+            if curr.pair.key < node.pair.key:
+                curr = curr.left
+
+        if curr.left is not None:
+            curr = curr.left
+            while curr is not None:
+                curr = curr.right
+            pred = curr
+        else:
+            pred = curr.parent
+
+        return pred
 
     def _after(self, node: _Node) -> _Node | None:
         """
