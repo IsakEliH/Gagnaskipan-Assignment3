@@ -164,21 +164,22 @@ class BinarySearchTree(IBinarySearchTree):
     def _move_to_key(self, node: _Node, key: object) -> _Node:
         """
         A helper function that takes in a starting Node and a key.
-        The function uses recursion to search for the node of the key.
-        Returns the Node with the inputted key.
+        Return the node containing key if it exists.
+        Otherwise return the parent node where a new key should be inserted.
         """
 
-        if node.left is None and (key < node.pair.key):
-            return node
-        if node.right is None and (key > node.pair.key):
+        if key == node.pair.key:
             return node
 
         if key < node.pair.key:
-            node = self._move_to_key(node.left, key)
-        if key > node.pair.key:
-            node = self._move_to_key(node.right, key)
+            if node.left is None:
+                return node
+            return self._move_to_key(node.left, key)
 
-        return node
+        else:  # key > node.pair.key
+            if node.right is None:
+                return node
+            return self._move_to_key(node.right, key)
 
     def insert(self, pair: Pair) -> bool:
         """
@@ -186,6 +187,7 @@ class BinarySearchTree(IBinarySearchTree):
         if the key already exists in the tree, then override with the new (key, value) pair.
         Returns True is a new element was inserted, otherwise False (was updated).
         """
+
         if self._root is None:
             self._root = self._Node(None, None, None, pair)
             return True
@@ -199,6 +201,8 @@ class BinarySearchTree(IBinarySearchTree):
             node.right = self._Node(node, None, None, pair)
             return True
 
+        # key already exist, so we override
+        node.pair = pair
         return False
 
     def is_empty(self) -> bool:
