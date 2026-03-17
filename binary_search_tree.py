@@ -66,8 +66,12 @@ class BinarySearchTree(IBinarySearchTree):
         """
         In a non-empty tree, returns the maximum key node (last in an inorder traversal), otherwise None.
         """
-        # TO DO ...
-        return None
+        curr = self._root
+
+        while curr is not None:
+            curr = curr.right
+
+        return curr
 
     def _before(self, node: _Node) -> _Node | None:
         """
