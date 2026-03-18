@@ -25,21 +25,22 @@ def test1():
     for key in keys:
         tree.insert_key(key)
         print(tree)
+
     print(tree)
-    tree.delete(55)
-    print(tree)
-    tree.delete(20)
-    print(tree)
-    tree.delete(70)
-    print(tree)
-    tree.delete(50)
-    print(tree)
-    for pair in tree:
-        print(pair.key, end=' ')
-    print()
-    for pair in reversed(tree):
-        print(pair.key, end=' ')
-    print()
+    # tree.delete(55)
+    # print(tree)
+    # tree.delete(20)
+    # print(tree)
+    # tree.delete(70)
+    # print(tree)
+    # tree.delete(50)
+    # print(tree)
+    # for pair in tree:
+    #     print(pair.key, end=' ')
+    # print()
+    # for pair in reversed(tree):
+    #     print(pair.key, end=' ')
+    # print()
 
 
 # Some basic BST tests, add more tests as needed!

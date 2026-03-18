@@ -230,9 +230,7 @@ class BinarySearchTree(IBinarySearchTree):
         """
         Returns a list of all the (key, value) pairs in the tree, in an increasing order.
         """
-        pair_list: list[Pair] = [pair for pair in self]
-
-        return pair_list
+        return [pair for pair in self]
 
     def clear(self):
         """
