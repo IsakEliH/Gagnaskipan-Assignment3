@@ -21,17 +21,17 @@ def word_frequency_alphabetical_pydict(text: str) -> list[tuple[str, int]]:
     :param text: text to process
     :return: list of word frequencies
     """
-    
+
     text_list: list[str] = text.lower().split()
     word_frequency: dict[str, int] = {}
 
     for word in text_list:
-        try:
-            word_frequency[word] += 1
-        except KeyError:
+        if word_frequency.get(word) is None:
             word_frequency[word] = 1
+        else:
+            word_frequency[word] += 1
 
-    return [(key,word_frequency[key]) for key in word_frequency]
+    return sorted([(key, word_frequency[key]) for key in word_frequency])
 
 
 def word_frequency_alphabetical_mydict(text):
@@ -46,12 +46,12 @@ def word_frequency_alphabetical_mydict(text):
     word_frequency: MyDict = MyDict()
 
     for word in text_list:
-        try:
-            word_frequency[word] += 1  # type: ignore
-        except KeyError:
+        if word_frequency.get(word) is None:
             word_frequency[word] = 1
+        else:
+            word_frequency[word] += 1  # type: ignore
 
-    return [(key,word_frequency[key]) for key in word_frequency]
+    return sorted([(key, word_frequency[key]) for key in word_frequency])
 
 
 if __name__ == "__main__":

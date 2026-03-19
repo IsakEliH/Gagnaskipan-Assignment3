@@ -270,6 +270,8 @@ class BinarySearchTree(IBinarySearchTree):
 
         node: BinarySearchTree._Node = self._move_to_key(self._root, key)
 
+        if node.pair.key != key:
+            return False
         # 3 cases
 
         # No child

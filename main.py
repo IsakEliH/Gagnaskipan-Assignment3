@@ -21,7 +21,7 @@ def test0():
 
 def test1():
     tree = BinarySearchTree()
-    keys = [50, 30, 20, 25, 70, 60, 40, 35, 65, 80, 55]
+    keys = [50, 30, 20, 25, 70, 60, 40, 35, 65, 80, 63]
     for key in keys:
         tree.insert_key(key)
         print(tree)
@@ -29,13 +29,13 @@ def test1():
     print(tree)
     print(" ------------------ DELETION CHAIN COMING UP ------------------ ")
     print("55")
-    print(tree.delete(55))
+    # print(tree.delete(55))
     print(tree)
     print("20")
-    tree.delete(20)
+    # tree.delete(20)
     print(tree)
     print("70")
-    tree.delete(70)
+    # tree.delete(70)
     print(tree)
     print("50")
     tree.delete(50)
