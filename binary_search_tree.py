@@ -3,6 +3,7 @@
 # Your name:
 #  - Ísak Elí Hauksson
 #
+
 from interface.binary_search_tree_abc import Pair, IBinarySearchTree
 
 
@@ -276,7 +277,7 @@ class BinarySearchTree(IBinarySearchTree):
 
         # No child
         if self._child_count(node) == 0:
-            # if the node is the root
+            # deleting the root
             if node == self._root:
                 self._root = None
                 return True
