@@ -164,7 +164,7 @@ class BinarySearchTree(IBinarySearchTree):
         if key == node.pair.key:
             return node
 
-        if key < node.pair.key:
+        if key < node.pair.key:  # type: ignore
             if node.left is None:
                 return node
             return self._move_to_key(node.left, key)
@@ -187,10 +187,10 @@ class BinarySearchTree(IBinarySearchTree):
 
         node: BinarySearchTree._Node = self._move_to_key(self._root, pair.key)
 
-        if pair.key < node.pair.key:
+        if pair.key < node.pair.key:  # type: ignore
             node.left = self._Node(node, None, None, pair)
             return True
-        if pair.key > node.pair.key:
+        if pair.key > node.pair.key:  # type: ignore
             node.right = self._Node(node, None, None, pair)
             return True
 
@@ -306,5 +306,27 @@ class BinarySearchTree(IBinarySearchTree):
         # Two children
         elif self._child_count(node) == 2:
             new_node = self._after(node)
+
+            # After should never be None because node has two children
+            # Just for the linter
+            if new_node is None: 
+                return False
+            
+            # Remove connection of new node
+            if self._is_right_child(new_node):
+                new_node.parent.right = None
+            else:
+                new_node.parent.left = None
+
+            # Correct the parents of children of node
+            node.left.parent = new_node
+            node.right.parent = new_node
+
+            # Correct parent of new_node
+            new_node.parent = node.parent
+
+            # Finally assign the new node
+            node = new_node
+            return True
 
         return False
