@@ -295,38 +295,49 @@ class BinarySearchTree(IBinarySearchTree):
             if node.left is None:
                 right_node: BinarySearchTree._Node = node.right
                 right_node.parent = node.parent
-                node = right_node
+
+                if self._is_right_child(right_node):
+                    right_node.parent.right = right_node
+                else:
+                    right_node.parent.left = right_node
+
                 return True
+
             else:
-                left: BinarySearchTree._Node = node.left
-                left.parent = node.parent
-                node = node.left
+                left_node: BinarySearchTree._Node = node.left
+                left_node.parent = node.parent
+
+                if self._is_right_child(left_node):
+                    left_node.parent.right = left_node
+                else:
+                    left_node.parent.left = left_node
+
                 return True
 
         # Two children
         elif self._child_count(node) == 2:
-            new_node = self._after(node)
+            successor = self._after(node)
 
-            # After should never be None because node has two children
-            # Just for the linter
-            if new_node is None: 
+            if successor is None:
                 return False
-            
-            # Remove connection of new node
-            if self._is_right_child(new_node):
-                new_node.parent.right = None
+
+            # Copy successor's data into node
+            node.pair = successor.pair
+
+            # Now remove successor from its old position
+            # Successor can only have at most one child, and only on the right
+            child: BinarySearchTree._Node = successor.right
+
+            if child is not None:
+                child.parent = successor.parent
+
+            if successor.parent is None:
+                self._root = child
+            elif self._is_right_child(successor):
+                successor.parent.right = child
             else:
-                new_node.parent.left = None
+                successor.parent.left = child
 
-            # Correct the parents of children of node
-            node.left.parent = new_node
-            node.right.parent = new_node
-
-            # Correct parent of new_node
-            new_node.parent = node.parent
-
-            # Finally assign the new node
-            node = new_node
             return True
 
         return False
