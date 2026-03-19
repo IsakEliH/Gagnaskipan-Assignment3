@@ -11,6 +11,7 @@ from binary_search_tree import Pair, BinarySearchTree
 class MyDict(MutableMapping):
     def __init__(self):
         self._bst = BinarySearchTree()
+        self._len = 0
 
     def __iter__(self):
         """
@@ -58,19 +59,19 @@ class MyDict(MutableMapping):
         """
         Sets the value at key entry, i.e. d[key] = value
         """
-        # TO DO ...
-        ...
+        self._bst.insert(Pair(key, value))
+        self._len += 1
 
     def __delitem__(self, key):
         """
-        Returns the entry at kay, i.e. del d[key]
+        Returns the entry at key, i.e. del d[key]
         """
-        # TO DO ...
-        ...
+        self._bst.delete(key)
+
+        return key
 
     def __len__(self):
         """
         Returns the number of entries in the dictionary.
         """
-        # TO DO ...
-        return 0
+        return self._len
