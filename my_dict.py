@@ -7,12 +7,12 @@
 from collections.abc import MutableMapping
 from binary_search_tree import Pair, BinarySearchTree
 
-class MyDict(MutableMapping):
 
+class MyDict(MutableMapping):
     def __init__(self):
-        self._bst = BinarySearchTree()  # Your BST, feel free to add more member variables as needed.
-        # TO DO ...
-        ...
+        self._bst = (
+            BinarySearchTree()
+        )  # Your BST, feel free to add more member variables as needed.
 
     def __iter__(self):
         """
@@ -29,8 +29,8 @@ class MyDict(MutableMapping):
         """
         elements = []
         for elem in self._bst:
-            elements.append(f'{elem.key}: {elem.value}')
-        return '{' + ', '.join(elements) + '}'
+            elements.append(f"{elem.key}: {elem.value}")
+        return "{" + ", ".join(elements) + "}"
 
     def __getitem__(self, key):
         """
