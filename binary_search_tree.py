@@ -282,12 +282,10 @@ class BinarySearchTree(IBinarySearchTree):
                 self._root = None
                 return True
 
-            # if the node is a right child
             if self._is_right_child(node):
                 parent.right = None
                 return True
 
-            # if the node is a left child
             else:
                 parent.left = None
                 return True
@@ -295,13 +293,18 @@ class BinarySearchTree(IBinarySearchTree):
         # One child
         elif self._child_count(node) == 1:
             if node.left is None:
-                node = node.right
+                right_node: BinarySearchTree._Node = node.right
+                right_node.parent = node.parent
+                node = right_node
                 return True
             else:
+                left: BinarySearchTree._Node = node.left
+                left.parent = node.parent
                 node = node.left
                 return True
 
         # Two children
+        elif self._child_count(node) == 2:
+            new_node = self._after(node)
 
         return False
-        
