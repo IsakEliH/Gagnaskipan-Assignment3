@@ -4,7 +4,6 @@
 #  - Ísak Elí Hauksson
 #
 from interface.binary_search_tree_abc import Pair, IBinarySearchTree
-from enum import StrEnum
 
 
 class BinarySearchTree(IBinarySearchTree):
