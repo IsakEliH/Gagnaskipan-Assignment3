@@ -270,8 +270,6 @@ class BinarySearchTree(IBinarySearchTree):
 
         node: BinarySearchTree._Node = self._move_to_key(self._root, key)
 
-        parent: BinarySearchTree._Node = node.parent
-
         # 3 cases
 
         # No child
@@ -282,11 +280,11 @@ class BinarySearchTree(IBinarySearchTree):
                 return True
 
             if self._is_right_child(node):
-                parent.right = None
+                node.parent.right = None
                 return True
 
             else:
-                parent.left = None
+                node.parent.left = None
                 return True
 
         # One child
