@@ -4,6 +4,7 @@
 #  - Ísak Elí Hauksson
 #
 from interface.binary_search_tree_abc import Pair, IBinarySearchTree
+from enum import StrEnum
 
 
 class BinarySearchTree(IBinarySearchTree):
@@ -238,10 +239,56 @@ class BinarySearchTree(IBinarySearchTree):
         """
         self._root = None
 
+    def _child_count(self, node: _Node) -> int:
+        """
+        Returns the number of children a node has
+        """
+        counter: int = 0
+
+        if node.left is not None:
+            counter += 1
+
+        if node.right is not None:
+            counter += 1
+
+        return counter
+
+    def _is_right_child(self, node: _Node) -> bool:
+        """
+        A helper function that returns if the node inputted is a
+        right child or not
+        """
+
+        return node.parent.right == node
+
     def delete(self, key: object) -> bool:
         """
         Deletes the element with key, if exists.
         Returns True if the element was deleted (existed), otherwise False (does not exist).
         """
-        # TO DO ...
-        return False
+        if self._root is None:
+            return False
+
+        node: BinarySearchTree._Node = self._move_to_key(self._root, key)
+
+        parent: BinarySearchTree._Node = node.parent
+
+        # 3 cases
+
+        # No child
+        if self._child_count(node) == 0:
+            if node == self._root:
+                self._root = None
+                return True
+
+            if self._is_right_child(node):
+                parent.right = None
+                return True
+
+            else:
+                parent.left = None
+                return True
+
+        # One child
+
+        # Two children
