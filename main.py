@@ -27,20 +27,25 @@ def test1():
         print(tree)
 
     print(tree)
-    # tree.delete(55)
-    # print(tree)
-    # tree.delete(20)
-    # print(tree)
-    # tree.delete(70)
-    # print(tree)
-    # tree.delete(50)
-    # print(tree)
-    # for pair in tree:
-    #     print(pair.key, end=' ')
-    # print()
-    # for pair in reversed(tree):
-    #     print(pair.key, end=' ')
-    # print()
+    print(" ------------------ DELETION CHAIN COMING UP ------------------ ")
+    print("55")
+    print(tree.delete(55))
+    print(tree)
+    print("20")
+    tree.delete(20)
+    print(tree)
+    print("70")
+    tree.delete(70)
+    print(tree)
+    print("50")
+    tree.delete(50)
+    print(tree)
+    for pair in tree:
+        print(pair.key, end=' ')
+    print()
+    for pair in reversed(tree):
+        print(pair.key, end=' ')
+    print()
 
 
 # Some basic BST tests, add more tests as needed!
