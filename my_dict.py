@@ -10,9 +10,7 @@ from binary_search_tree import Pair, BinarySearchTree
 
 class MyDict(MutableMapping):
     def __init__(self):
-        self._bst = (
-            BinarySearchTree()
-        )  # Your BST, feel free to add more member variables as needed.
+        self._bst = BinarySearchTree()
 
     def __iter__(self):
         """
@@ -37,16 +35,24 @@ class MyDict(MutableMapping):
         Returns the value at key entry, i.e. value = d[key].
         Raises KeyError if the key is not found.
         """
-        # TO DO ...
-        ...
+        item = self._bst.get(key)
+
+        if item is None:
+            raise KeyError(f"Key '{key}' not found in dictionary.")
+
+        return item
 
     def get(self, key, default=None):
         """
         Returns the value at key entry, i.e. value = d.get(key) ; or d.get(key,default) .
         Returns default if key not found.
         """
-        # TO DO ...
-        return default
+        item = self._bst.get(key)
+
+        if item is None:
+            return default
+
+        return item
 
     def __setitem__(self, key, value):
         """
