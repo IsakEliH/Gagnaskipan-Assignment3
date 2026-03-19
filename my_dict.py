@@ -66,7 +66,10 @@ class MyDict(MutableMapping):
         """
         Returns the entry at key, i.e. del d[key]
         """
-        self._bst.delete(key)
+        status: bool = self._bst.delete(key)
+
+        if not status:
+            raise KeyError(f"Key '{key}' not found in dictionary.")
 
         return key
 
