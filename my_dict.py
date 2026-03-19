@@ -59,8 +59,9 @@ class MyDict(MutableMapping):
         """
         Sets the value at key entry, i.e. d[key] = value
         """
+        if self._bst.get(key) is None:
+            self._len += 1
         self._bst.insert(Pair(key, value))
-        self._len += 1
 
     def __delitem__(self, key):
         """
@@ -71,6 +72,7 @@ class MyDict(MutableMapping):
         if not status:
             raise KeyError(f"Key '{key}' not found in dictionary.")
 
+        self._len -= 1
         return key
 
     def __len__(self):
